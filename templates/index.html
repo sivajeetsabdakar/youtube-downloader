@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Downloader</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='favicon.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🎬 YouTube Downloader</h1>
-            <p class="subtitle">Download videos and audio from YouTube</p>
+            <div class="header-content">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="YouTube Downloader Logo" class="logo">
+                <div class="header-text">
+                    <h1>YouTube Downloader</h1>
+                    <p class="subtitle">Download videos and audio from YouTube</p>
+                </div>
+            </div>
         </header>
 
         <main>

@@ -28,6 +28,36 @@ header {
     text-align: center;
 }
 
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.header-text {
+    flex: 1;
+    min-width: 200px;
+}
+
 header h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
@@ -360,6 +390,20 @@ main {
 }
 
 @media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
     .info-card {
         flex-direction: column;
     }
