@@ -1,4 +1,12 @@
-# Deployment Guide
+# YouTube Downloader
+
+A web application to download videos and audio from YouTube, built with Flask and yt-dlp.
+
+## 🌐 Live Demo
+
+**Try it now:** [https://yt-downloader-production-ce78.up.railway.app/](https://yt-downloader-production-ce78.up.railway.app/)
+
+## Deployment Guide
 
 This directory contains Docker deployment files for the YouTube Downloader web application.
 
