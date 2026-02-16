@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 YouTube Downloader</h1>
+            <p class="subtitle">Download videos and audio from YouTube</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="urlInput" 
+                        placeholder="Paste YouTube URL here..."
+                        autocomplete="off"
+                    >
+                    <button id="infoBtn" class="btn btn-info">Get Info</button>
+                </div>
+            </div>
+
+            <div id="videoInfo" class="video-info hidden">
+                <div class="info-card">
+                    <img id="thumbnail" src="" alt="Video thumbnail" class="thumbnail">
+                    <div class="info-content">
+                        <h2 id="videoTitle"></h2>
+                        <p class="info-text"><strong>Channel:</strong> <span id="uploader"></span></p>
+                        <p class="info-text"><strong>Duration:</strong> <span id="duration"></span></p>
+                        <p class="info-text"><strong>Views:</strong> <span id="views"></span></p>
+                    </div>
+                </div>
+
+                <div class="download-options">
+                    <div class="option-group">
+                        <label>
+                            <input type="radio" name="format" value="video" checked>
+                            <span>Video</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="format" value="audio">
+                            <span>Audio (MP3)</span>
+                        </label>
+                    </div>
+
+                    <div class="quality-group" id="qualityGroup">
+                        <label for="quality">Quality:</label>
+                        <select id="quality">
+                            <option value="best">Best Available</option>
+                            <option value="720p">720p</option>
+                            <option value="480p">480p</option>
+                            <option value="360p">360p</option>
+                        </select>
+                    </div>
+
+                    <button id="downloadBtn" class="btn btn-download">Download</button>
+                </div>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+
+            <div id="downloadProgress" class="progress-section hidden">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p class="progress-text" id="progressText">Preparing download...</p>
+            </div>
+
+            <div id="downloadsList" class="downloads-section" style="display: none;">
+                <h3>Downloaded Files</h3>
+                <p style="color: #718096; font-size: 0.9em; margin-bottom: 15px;">
+                    Note: Files are streamed directly to your browser. No files are stored on the server.
+                </p>
+                <button id="refreshBtn" class="btn btn-secondary">Refresh</button>
+                <div id="filesList" class="files-list"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

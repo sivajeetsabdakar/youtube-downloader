@@ -1,0 +1,40 @@
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install Gunicorn for production WSGI server
+RUN pip install --no-cache-dir gunicorn
+
+# Copy application files
+COPY app.py .
+COPY templates/ ./templates/
+COPY static/ ./static/
+
+# Create temp directory for streaming downloads (auto-cleaned)
+RUN mkdir -p /tmp/yt-downloads
+
+# Set environment variables
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=production
+ENV PYTHONUNBUFFERED=1
+ENV TMPDIR=/tmp/yt-downloads
+
+# Expose port (will be overridden by hosting service)
+EXPOSE 5000
+
+# Use Gunicorn for production
+# Increased timeout for large video downloads
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--threads", "2", "--timeout", "300", "--keep-alive", "5", "app:app"]
+

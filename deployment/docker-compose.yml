@@ -1,0 +1,16 @@
+services:
+  yt-downloader:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    container_name: yt-downloader
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../downloads:/app/downloads
+      # Optional: mount cookies if available (comment out if cookies.txt doesn't exist)
+      - ../cookies.txt:/app/cookies.txt:ro
+    environment:
+      - FLASK_ENV=production
+    restart: unless-stopped
+
